@@ -1,12 +1,12 @@
 {
   nixos-wsl,
   config,
+  inputs,
   ...
 }:
 {
   imports = [
-    ../../modules/core/system.nix
-    nixos-wsl.nixosModules.default
+    inputs.nixos-wsl.nixosModules.default
   ];
   nixpkgs.config.allowUnfree = true;
   networking = {

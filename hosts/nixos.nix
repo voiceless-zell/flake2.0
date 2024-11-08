@@ -30,42 +30,49 @@ let
         dots = "/persist/home/${user}/projects/dotfiles";
       };
 
-      modules = [
-        ./${host} # host specific configuration
-        ./${host}/hardware.nix # host specific hardware configuration
-        ../nixos
-        ../overlays
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
+      modules =
+        [
+          ./${host} # host specific configuration
 
-            extraSpecialArgs = specialArgs // {
-              inherit host user;
-              isNixOS = true;
-              isWSL = host == "WSL";
-              isLaptop = host == "P16" || host == "G14";
-              isVm = host == "vm" || host == "vm-hyprland";
-              dots = "/persist/home/${user}/projects/dotfiles";
-            };
+        ]
+        # Conditionally add the hardware module if host is not "WSL"
+        ++ lib.optionals (host != "WSL") [
+          ./${host}/hardware.nix
+        ]
+        ++ [
+          ../nixos
+          #         ../overlays
+          inputs.home-manager.nixosModules.home-manager
+          inputs.LazyVim.homeManagerModules.default
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
 
-            users.${user} = {
-              imports = [
-                inputs.nix-index-database.hmModules.nix-index
-                ./${host}/home.nix # host specific home-manager configuration
-                ../home-manager
-              ];
+              extraSpecialArgs = specialArgs // {
+                inherit host user;
+                isNixOS = true;
+                isWSL = host == "WSL";
+                isLaptop = host == "P16" || host == "G14";
+                isVm = host == "vm" || host == "vm-hyprland";
+                dots = "/persist/home/${user}/projects/dotfiles";
+              };
+
+              users.${user} = {
+                imports = [
+                  ./${host}/home.nix # host specific home-manager configuration
+                  ../home-manager
+                ];
+              };
             };
-          };
-        }
-        # alias for home-manager
-        (lib.mkAliasOptionModule [ "hm" ] [
-          "home-manager"
-          "users"
-          user
-        ])
-      ];
+          }
+          # alias for home-manager
+          (lib.mkAliasOptionModule [ "hm" ] [
+            "home-manager"
+            "users"
+            user
+          ])
+        ];
     };
 in
 {
