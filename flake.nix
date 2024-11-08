@@ -9,51 +9,51 @@
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
-
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-    }:
+    inputs@{ nixpkgs, self, ... }:
     let
-      # Custom function to load NixOS and Home Manager configurations for a given hostname
-      loadHostConfiguration = hostname: {
-        # Load NixOS configuration for the host
-        nixos = import ./hosts/${hostname}/default.nix {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-          lib = nixpkgs.lib;
-          system = "x86_64-linux";
-        };
-
-        # Load Home Manager configuration for the host
-        homeManager = import ./hosts/${hostname}/home.nix {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-          home-manager = home-manager.lib;
-          system = "x86_64-linux";
+      system = "x86_64-linux";
+      pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = import ./lib.nix {
+        inherit (nixpkgs) lib;
+        inherit pkgs;
+        inherit (inputs) home-manager;
+      };
+      createCommonArgs = system: {
+        inherit
+          self
+          inputs
+          nixpkgs
+          lib
+          pkgs
+          system
+          ;
+        specialArgs = {
+          inherit self inputs;
         };
       };
-
-      # Add any hosts you want to include in your flake.
-      hostnames = [
-        "WSL"
-      ];
+      commonArgs = createCommonArgs system;
+      # call with forAllSystems (commonArgs: function body)
+      forAllSystems =
+        fn:
+        lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "aarch64-darwin"
+        ] (system: fn (createCommonArgs system));
     in
     {
-      # Define nixosConfigurations for each host in `hostnames`
-      nixosConfigurations = builtins.listToAttrs (
-        map (hostname: {
-          name = hostname;
-          value = (loadHostConfiguration hostname).nixos;
-        }) hostnames
-      );
+      nixosConfigurations = (import ./hosts/nixos.nix commonArgs); # // (import ./hosts/iso commonArgs);
 
-      # Define homeConfigurations for each host
-      homeConfigurations = builtins.listToAttrs (
-        map (hostname: {
-          name = hostname;
-          value = (loadHostConfiguration hostname).homeManager;
-        }) hostnames
-      );
+      homeConfigurations = import ./hosts/home-manager.nix commonArgs;
+
+      inherit lib self;
+
+      packages = forAllSystems (commonArgs': (import ./packages commonArgs'));
+
     };
 }
