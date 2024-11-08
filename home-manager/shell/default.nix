@@ -8,7 +8,6 @@
 {
   imports = [
     ./git.nix
-    # ./neovim
     ./ripgrep.nix
     ./starship.nix
     ./tmux.nix

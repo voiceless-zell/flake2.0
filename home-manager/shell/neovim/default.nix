@@ -23,7 +23,7 @@
       vimwiki
       LazyVim
     ];
-    extraLuaConfig =
+    extraConfig =
       let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
