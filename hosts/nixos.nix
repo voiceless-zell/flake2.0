@@ -22,12 +22,14 @@ let
       inherit pkgs;
 
       specialArgs = specialArgs // {
-        inherit host user;
+        inherit
+          host
+          user
+          ;
         isNixOS = true;
         isWSL = host == "WSL";
         isLaptop = host == "P16" || host == "G14";
         isVm = host == "vm" || host == "vm-hyprland";
-        dots = "/persist/home/${user}/projects/dotfiles";
       };
 
       modules =
@@ -41,7 +43,7 @@ let
         ]
         ++ [
           ../nixos
-          #         ../overlays
+          ../overlays
           inputs.home-manager.nixosModules.home-manager
           inputs.LazyVim.homeManagerModules.default
           {
@@ -52,10 +54,8 @@ let
               extraSpecialArgs = specialArgs // {
                 inherit host user;
                 isNixOS = true;
-                isWSL = host == "WSL";
                 isLaptop = host == "P16" || host == "G14";
                 isVm = host == "vm" || host == "vm-hyprland";
-                dots = "/persist/home/${user}/projects/dotfiles";
               };
 
               users.${user} = {

@@ -8,7 +8,7 @@
 {
   imports = [
     ./git.nix
-    ./neovim
+    # ./neovim
     ./ripgrep.nix
     ./starship.nix
     ./tmux.nix
@@ -56,67 +56,10 @@
   };
 
   config = {
-    home.packages =
-      with pkgs;
-      [
-        # dysk # better disk info
-        ets # add timestamp to beginning of each line
-        fd # better find
-        fx # terminal json viewer and processor
-        htop
-        jq
-        sd # better sed
-        # grep, with boolean query patterns, e.g. ug --files -e "A" --and "B"
-        ugrep
-      ]
-      # add custom user created shell packages
-      ++ (lib.attrValues config.custom.shell.packages);
-
-    # add custom user created shell packages to pkgs.custom.shell
-    nixpkgs.overlays = lib.mkIf (!isNixOS) [
-      (_: prev: {
-        custom = (prev.custom or { }) // {
-          shell = config.custom.shell.packages;
-        };
-      })
+    home.packages = with pkgs; [
+      ets # add timestamp to beginning of each line
+      fd # better find
+      htop
     ];
-
-    programs = {
-      bat = {
-        enable = true;
-        extraPackages = [
-          (pkgs.symlinkJoin {
-            name = "batman";
-            paths = [ pkgs.bat-extras.batman ];
-            postBuild = ''
-              mkdir -p $out/share/bash-completion/completions
-              echo 'complete -F _comp_cmd_man batman' > $out/share/bash-completion/completions/batman
-
-              mkdir -p $out/share/fish/vendor_completions.d
-              echo 'complete batman --wraps man' > $out/share/fish/vendor_completions.d/batman.fish
-
-              mkdir -p $out/share/zsh/site-functions
-              cat << EOF > $out/share/zsh/site-functions/_batman
-              #compdef batman
-              _man "$@"
-              EOF
-            '';
-            meta.mainProgram = "batman";
-          })
-        ];
-      };
-
-      fzf = {
-        enable = true;
-        enableBashIntegration = true;
-        enableFishIntegration = true;
-      };
-    };
-
-    custom.persist = {
-      home = {
-        cache.directories = [ ".local/share/zoxide" ];
-      };
-    };
   };
 }
