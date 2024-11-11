@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 {
   programs.lazygit.enable = true;
 
@@ -13,7 +9,7 @@
     extraPackages = with pkgs; [
       lua-language-server
       stylua
-      #    Telescope
+      # Telescope
       ripgrep
     ];
 
@@ -23,10 +19,10 @@
       vimwiki
       LazyVim
     ];
+
     extraConfig =
       let
         plugins = with pkgs.vimPlugins; [
-          # LazyVim
           LazyVim
           bufferline-nvim
           cmp-buffer
@@ -105,16 +101,14 @@
             path = mini-nvim;
           }
         ];
-        mkEntryFromDrv =
-          drv:
-          if lib.isDerivation drv then
-            {
-              name = "${lib.getName drv}";
-              path = drv;
-            }
-          else
-            drv;
+
+        mkEntryFromDrv = drv: if lib.isDerivation drv then {
+          name = "${lib.getName drv}";
+          path = drv;
+        } else drv;
+
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+
       in
       ''
         require("lazy").setup({
@@ -131,12 +125,11 @@
           spec = {
             { "LazyVim/LazyVim", import = "lazyvim.plugins" },
             -- The following configs are needed for fixing lazyvim on nix
-
-          { "nvim-treesitter/nvim-treesitter",
-             opts = function(_, opts)
-              opts.ensure_installed = {}
-            end,
-          },
+            { "nvim-treesitter/nvim-treesitter",
+              opts = function(_, opts)
+                opts.ensure_installed = {}
+              end,
+            },
             -- force enable telescope-fzf-native.nvim
             { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
             -- disable mason.nvim, use programs.neovim.extraPackages
@@ -146,43 +139,45 @@
             { import = "plugins" },
             -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
             { "epwalsh/obsidian.nvim", version = "*",  ft= "markdown", lazy = false },
-            { "vimwiki/vimwiki", version = "*"}
+            { "vimwiki/vimwiki", version = "*" }
           },
         })
       '';
-  };
-  # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
-  xdg.configFile."nvim/parser".source =
-    let
-      parsers = pkgs.symlinkJoin {
-        name = "treesitter-parsers";
-        paths =
-          (pkgs.vimPlugins.nvim-treesitter.withPlugins (
-            plugins: with plugins; [
-              c
-              lua
-              bash
-              markdown_inline
-              markdown
-              regex
-              nix
-              python
-              xml
-              yaml
-              vimdoc
-              java
-              http
-              html
-              dockerfile
-            ]
-          )).dependencies;
-      };
-    in
-    "${parsers}/parser";
 
-  # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
-  xdg.configFile = {
-    "nvim/lua".source = ./lua;
-    "nvim/lua/plugins/obsidian.lua".source = ./lua/plugins/obsidian.lua;
+    # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
+    xdg.configFile."nvim/parser".source =
+      let
+        parsers = pkgs.symlinkJoin {
+          name = "treesitter-parsers";
+          paths =
+            (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+              plugins: with plugins; [
+                c
+                lua
+                bash
+                markdown_inline
+                markdown
+                regex
+                nix
+                python
+                xml
+                yaml
+                vimdoc
+                java
+                http
+                html
+                dockerfile
+              ]
+            )).dependencies;
+        };
+      in
+      "${parsers}/parser";
+
+    # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
+    xdg.configFile = {
+      "nvim/lua".source = ./lua;
+      "nvim/lua/plugins/obsidian.lua".source = ./lua/plugins/obsidian.lua;
+    };
   };
 }
+
