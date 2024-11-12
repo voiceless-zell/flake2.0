@@ -1,6 +1,5 @@
 {
   config,
-  isNixOS,
   lib,
   pkgs,
   ...
@@ -12,6 +11,7 @@
     ./starship.nix
     ./tmux.nix
     ./neovim
+    ./zsh.nix
   ];
 
   options.custom = with lib; {
