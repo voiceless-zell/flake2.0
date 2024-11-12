@@ -6,10 +6,9 @@
   ...
 }:
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./../../nixos
-  ];
+  imports =
+    [
+    ];
   boot.kernelModules = [ "kvm-intel" ];
   nixpkgs.config.allowUnfree = true;
   networking = {
