@@ -17,7 +17,7 @@
     #};
     displayManager = {
       sddm = {
-        enable = isNIXOS && !isWSL;
+        enable = true;
         wayland = {
           enable = isNIXOS && !isWSL;
         };
