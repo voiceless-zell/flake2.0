@@ -1,8 +1,8 @@
 { isNIXOS, isWSL, ... }:
 {
   services = {
-    gvfs.enable = isNIXOS;
-    gnome.gnome-keyring.enable = isNIXOS;
+    gvfs.enable = true;
+    gnome.gnome-keyring.enable = true;
     dbus.enable = true;
     openssh = {
       enable = true;
@@ -19,7 +19,7 @@
       sddm = {
         enable = true;
         wayland = {
-          enable = isNIXOS && !isWSL;
+          enable = true;
         };
       };
     };
