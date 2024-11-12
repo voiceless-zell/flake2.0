@@ -28,7 +28,7 @@ let
           ;
         isNixOS = true;
         isWSL = host == "WSL";
-        isLaptop = host == "P16" || host == "G14";
+        isLaptop = host == "P16" || host == "G14" || host == "T480";
         isVm = host == "vm" || host == "vm-hyprland";
       };
 
