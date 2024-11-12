@@ -2,12 +2,14 @@
   nixos-wsl,
   config,
   inputs,
+  pkgs,
   ...
 }:
 {
   imports = [
     inputs.nixos-wsl.nixosModules.default
   ];
+  users.defaultUserShell = pkgs.zsh;
   networking = {
     hostName = "WSL";
   };
