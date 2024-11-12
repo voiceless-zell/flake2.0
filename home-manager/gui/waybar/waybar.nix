@@ -1,10 +1,10 @@
 {
-  isNIXOS,
+  isNixOS,
   ...
 }:
 {
   programs.waybar = {
-    enable = isNIXOS;
+    enable = isNixOS;
     systemd = {
       enable = true;
       target = "xdg-desktop-autostart.target";

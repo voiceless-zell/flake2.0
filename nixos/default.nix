@@ -10,9 +10,9 @@
         "nix-command"
         "flakes"
       ];
-      #   substituters = if isNIXOS then [ "https://nix-gaming.cachix.org" ] else [ ];
+      #   substituters = if isNixOS then [ "https://nix-gaming.cachix.org" ] else [ ];
       #trusted-public-keys =
-      #  if isNIXOS then [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ] else [ ];
+      #  if isNixOS then [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ] else [ ];
     };
     gc = {
       automatic = true;
@@ -32,6 +32,5 @@
 
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
-  nixpkgs.config.allowUnfree = true;
   system.stateVersion = "23.05";
 }

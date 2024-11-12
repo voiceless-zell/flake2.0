@@ -45,7 +45,6 @@ let
           ../nixos
           ../overlays
           inputs.home-manager.nixosModules.home-manager
-          inputs.LazyVim.homeManagerModules.default
           {
             home-manager = {
               useGlobalPkgs = true;
@@ -60,6 +59,7 @@ let
 
               users.${user} = {
                 imports = [
+                  inputs.LazyVim.homeManagerModules.default
                   ./${host}/home.nix # host specific home-manager configuration
                   ../home-manager
                 ];
