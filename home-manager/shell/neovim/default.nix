@@ -1,15 +1,13 @@
 {
-  config,
   pkgs,
   lib,
-  isNixos,
   ...
 }:
 {
   programs.lazygit.enable = true;
 
   programs.neovim = {
-    enable = isNixos;
+    enable = true;
     defaultEditor = true;
     withRuby = true;
     extraPackages = with pkgs; [
