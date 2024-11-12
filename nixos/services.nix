@@ -1,4 +1,4 @@
-{ isNIXOS, ... }:
+{ isNIXOS, isWSL, ... }:
 {
   services = {
     gvfs.enable = isNIXOS;
@@ -11,16 +11,15 @@
         AllowUsers = [ "zell" ];
       };
     };
-    self-deploy.sshKeyFile = "~/.ssh/id_ed25519";
     #   ollama = {
     #  enable = isNIXOS;
     #  acceleration = "cuda";#find why over ride package
     #};
     displayManager = {
       sddm = {
-        enable = isNIXOS;
+        enable = isNIXOS && !isWSL;
         wayland = {
-          enable = isNIXOS;
+          enable = isNIXOS && !isWSL;
         };
       };
     };

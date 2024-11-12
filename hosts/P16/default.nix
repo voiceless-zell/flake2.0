@@ -25,12 +25,6 @@
       "nvidia"
       "inter"
     ];
-    displayManager.sddm = {
-      enable = true;
-    };
-    desktopManager.gnome = {
-      enable = true;
-    };
   };
 
   services.libinput = {
@@ -40,8 +34,6 @@
     };
   };
 
-  services.displayManager.sddm.wayland.enable = true;
-  services.gvfs.enable = true;
   services.hardware.bolt.enable = true;
   services.xserver.displayManager.sessionCommands = ''
     ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
