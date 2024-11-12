@@ -1,6 +1,6 @@
 {
   pkgs,
-  isNIXOS,
+  isNixOS,
   ...
 }:
 let
@@ -14,7 +14,7 @@ in
 {
   xdg.dataFile."themes/Tokyo-Night".source = Tokyo-Night;
   gtk = {
-    enable = isNIXOS;
+    enable = isNixOS;
     iconTheme = {
       package = Tokyo-Night;
       name = "Tokyo-Night";

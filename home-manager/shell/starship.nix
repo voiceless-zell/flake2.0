@@ -1,11 +1,11 @@
 {
   lib,
-  isNIXOS,
+  isNixOS,
   ...
 }:
 {
   programs.starship = {
-    enable = isNIXOS;
+    enable = isNixOS;
     settings = {
       add_newline = false;
       character = {

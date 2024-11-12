@@ -8,7 +8,6 @@
   imports = [
     inputs.nixos-wsl.nixosModules.default
   ];
-  nixpkgs.config.allowUnfree = true;
   networking = {
     hostName = "WSL";
   };

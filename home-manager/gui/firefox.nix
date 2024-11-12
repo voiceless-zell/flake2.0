@@ -1,11 +1,11 @@
 {
-  isNIXOS,
+  isNixOS,
   ...
 }:
 
 {
   programs.firefox = {
-    enable = isNIXOS;
+    enable = isNixOS;
     profiles = {
       default = {
         id = 0;

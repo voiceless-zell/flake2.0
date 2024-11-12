@@ -60,7 +60,7 @@
 
       inherit lib self;
 
-      packages = forAllSystems (commonArgs': (import commonArgs'));
+      # packages = forAllSystems (commonArgs': (import commonArgs'));
 
     };
 }
