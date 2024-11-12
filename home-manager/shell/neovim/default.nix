@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs.lazygit.enable = true;
 
@@ -102,10 +107,15 @@
           }
         ];
 
-        mkEntryFromDrv = drv: if lib.isDerivation drv then {
-          name = "${lib.getName drv}";
-          path = drv;
-        } else drv;
+        mkEntryFromDrv =
+          drv:
+          if lib.isDerivation drv then
+            {
+              name = "${lib.getName drv}";
+              path = drv;
+            }
+          else
+            drv;
 
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
 
@@ -143,41 +153,40 @@
           },
         })
       '';
+  };
 
-    # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
-    xdg.configFile."nvim/parser".source =
-      let
-        parsers = pkgs.symlinkJoin {
-          name = "treesitter-parsers";
-          paths =
-            (pkgs.vimPlugins.nvim-treesitter.withPlugins (
-              plugins: with plugins; [
-                c
-                lua
-                bash
-                markdown_inline
-                markdown
-                regex
-                nix
-                python
-                xml
-                yaml
-                vimdoc
-                java
-                http
-                html
-                dockerfile
-              ]
-            )).dependencies;
-        };
-      in
-      "${parsers}/parser";
+  # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
+  xdg.configFile."nvim/parser".source =
+    let
+      parsers = pkgs.symlinkJoin {
+        name = "treesitter-parsers";
+        paths =
+          (pkgs.vimPlugins.nvim-treesitter.withPlugins (
+            plugins: with plugins; [
+              c
+              lua
+              bash
+              markdown_inline
+              markdown
+              regex
+              nix
+              python
+              xml
+              yaml
+              vimdoc
+              java
+              http
+              html
+              dockerfile
+            ]
+          )).dependencies;
+      };
+    in
+    "${parsers}/parser";
 
-    # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
-    xdg.configFile = {
-      "nvim/lua".source = ./lua;
-      "nvim/lua/plugins/obsidian.lua".source = ./lua/plugins/obsidian.lua;
-    };
+  # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
+  xdg.configFile = {
+    "nvim/lua".source = ./lua;
+    "nvim/lua/plugins/obsidian.lua".source = ./lua/plugins/obsidian.lua;
   };
 }
-
