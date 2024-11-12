@@ -10,6 +10,7 @@
     inputs.nixos-wsl.nixosModules.default
   ];
   users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
   networking = {
     hostName = "WSL";
   };
