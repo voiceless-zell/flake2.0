@@ -25,7 +25,7 @@ let
         inherit host user;
         isWSL = host == "WSL";
         isNixOS = false;
-        isLaptop = host == "G14" || host == "P16";
+        isLaptop = host == "G14" || host == "P16" || host == "T480";
         isVm = host == "vm" || host == "vm-hyprland";
       };
 
