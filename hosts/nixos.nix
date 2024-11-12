@@ -52,6 +52,7 @@ let
 
               extraSpecialArgs = specialArgs // {
                 inherit host user;
+                isWSL = host == "WSL";
                 isNixOS = true;
                 isLaptop = host == "P16" || host == "G14";
                 isVm = host == "vm" || host == "vm-hyprland";

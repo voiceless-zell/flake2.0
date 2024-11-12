@@ -2,6 +2,7 @@
   pkgs,
   lib,
   isNixOS,
+  isWSL,
   ...
 }:
 with lib;
@@ -33,7 +34,7 @@ with lib;
   systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
   wayland.windowManager.hyprland = {
     systemd.enable = true;
-    enable = isNixOS;
+    enable = isNixOS && !isWSL;
     xwayland = {
       enable = isNixOS;
       #  hidpi = true;
