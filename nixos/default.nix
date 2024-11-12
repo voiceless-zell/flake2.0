@@ -3,6 +3,12 @@
   ...
 }:
 {
+  imports = [
+    ./program.nix
+    ./security.nix
+    ./services.nix
+    ./steam.nix
+  ];
   nix = {
     settings = {
       auto-optimise-store = true;
