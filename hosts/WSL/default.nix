@@ -17,6 +17,7 @@
     "nix-command"
     "flakes"
   ];
+  programs.dconf.enable = true;
   services.gvfs.enable = true;
   wsl = {
     enable = true;
