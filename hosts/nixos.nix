@@ -77,6 +77,7 @@ let
     };
 in
 {
+  T480 = mkNixosConfiguration "T480" { };
   WSL = mkNixosConfiguration "WSL" { };
   G14 = mkNixosConfiguration "G14" { };
   P16 = mkNixosConfiguration "P16" { };
