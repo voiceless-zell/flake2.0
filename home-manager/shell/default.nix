@@ -11,6 +11,7 @@
     ./ripgrep.nix
     ./starship.nix
     ./tmux.nix
+    ./neovim
   ];
 
   options.custom = with lib; {
