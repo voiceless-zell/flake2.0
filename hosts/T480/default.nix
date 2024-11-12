@@ -6,9 +6,8 @@
   ...
 }:
 {
-  imports =
-    [
-    ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "kvm-intel" ];
   nixpkgs.config.allowUnfree = true;
   networking = {
@@ -33,10 +32,6 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages =
-        with pkgs;
-        [
-        ];
     };
   };
 }
