@@ -36,7 +36,7 @@ with lib;
     systemd.enable = true;
     enable = isNixOS && !isWSL;
     xwayland = {
-      enable = isNixOS;
+      enable = isNixOS && !isWSL;
       #  hidpi = true;
     };
     #nvidiaPatches = false;
