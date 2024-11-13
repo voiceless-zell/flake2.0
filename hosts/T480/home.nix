@@ -3,11 +3,21 @@
   ...
 }:
 {
-  home = {
-    home-manager.user.zell = {
-      wayland.windowManager.hyprland.settings.monitor = [
-        "eDP=1,1920x1080,0x0,1"
-      ];
-    };
+  config = {
+    custom = {
+      monitors = 
+        [
+  {
+          name = "eDP-1";
+          width = "1920";
+          height = "1080";
+          position = "0x0";
+          scale = "1";
+      
+
+    }
+        ]
   };
+};
+  
 }
