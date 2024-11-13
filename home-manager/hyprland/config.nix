@@ -43,7 +43,6 @@
 
 
       dwindle {
-          no_gaps_when_only = false
           force_split = 0
           special_scale_factor = 0.8
           split_width_multiplier = 1.0
@@ -55,7 +54,6 @@
 
       master {
           special_scale_factor = 1
-          no_gaps_when_only = false
       }
 
 
@@ -63,7 +61,6 @@
           rounding = 10
           active_opacity = 0.95;
           inactive_opacity = 0.80;
-          drop_shadow = 0
             blur {
               enabled = true
               size = 2
