@@ -1,6 +1,7 @@
 {
   lib,
   user,
+  pkgs,
   ...
 }:
 {
@@ -9,6 +10,7 @@
   config = lib.mkMerge [
     {
       users = {
+        defaultUserShell = pkgs.zsh;
         users = {
           ${user} = {
             isNormalUser = true;

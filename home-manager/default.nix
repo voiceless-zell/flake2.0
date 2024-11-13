@@ -47,7 +47,6 @@
     fonts.fontconfig.enable = true;
 
     home = {
-      shell = pkgs.zsh;
       username = user;
       homeDirectory = "/home/${user}";
       # do not change this value
