@@ -8,6 +8,8 @@
     ./program.nix
     ./security.nix
     ./services.nix
+    ./users.nix
+    ./wayland.nix
     #./steam.nix
   ];
   nix = {

@@ -6,10 +6,10 @@
   ...
 }:
 {
-  programs.hyprland.enable = isNIXOS && !isWSL;
+  programs.hyprland.enable = true;
   xdg.portal = {
-    enable = isNIXOS && !isWSL;
-    wlr.enable = isNIXOS && !isWSL;
+    enable = true;
+    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
     ];

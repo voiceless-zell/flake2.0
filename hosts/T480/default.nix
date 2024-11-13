@@ -9,7 +9,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "kvm-intel" ];
-  nixpkgs.config.allowUnfree = true;
   networking = {
     hostName = "T480";
   };
@@ -28,10 +27,11 @@
     };
   };
   hardware = {
+    nvidia.open = true;
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
     };
   };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }

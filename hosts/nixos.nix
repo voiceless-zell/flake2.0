@@ -81,6 +81,6 @@ in
   WSL = mkNixosConfiguration "WSL" { };
   G14 = mkNixosConfiguration "G14" { };
   P16 = mkNixosConfiguration "P16" { };
-  vm = mkNixosConfiguration "vm" { };
-  vm-hyprland = mkNixosConfiguration "vm-hyprland" { };
+  #  vm = mkNixosConfiguration "vm" { };
+  #vm-hyprland = mkNixosConfiguration "vm-hyprland" { };
 }

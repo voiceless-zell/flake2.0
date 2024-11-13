@@ -65,4 +65,6 @@
   #   enable = true;
   #   useRoutingFeatures = "client";
   #   };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }
