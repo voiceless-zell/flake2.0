@@ -12,6 +12,7 @@
     withRuby = true;
     extraPackages = with pkgs; [
       lua-language-server
+      python3
       stylua
       #    Telescope
       ripgrep
