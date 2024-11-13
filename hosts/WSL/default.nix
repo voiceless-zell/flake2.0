@@ -9,7 +9,6 @@
   imports = [
     inputs.nixos-wsl.nixosModules.default
   ];
-  programs.zsh.enable = true;
   networking = {
     hostName = "WSL";
   };
