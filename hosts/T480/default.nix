@@ -19,7 +19,7 @@
   services.xserver = {
     enable = true;
     xkb.layout = "us";
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ ];
   };
   hardware = {
     nvidia.open = true;
