@@ -22,15 +22,15 @@
   services.xserver = {
     enable = true;
     xkb.layout = "us";
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ "intel" "nvidia" "modesetting" ];
+    desktopManager.gnome.enable = true;
   };
   hardware.nvidia = {
     open = true;
-    modesetting.enable = true;
+    modesetting.enable = false;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
     prime = {
       sync.enable = true;
       intelBusId = "PCI:1:00:0";
