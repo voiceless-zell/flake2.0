@@ -23,7 +23,6 @@
     enable = true;
     xkb.layout = "us";
     videoDrivers = [ "intel" "nvidia" "modesetting" ];
-    desktopManager.gnome.enable = true;
   };
   hardware.nvidia = {
     open = true;

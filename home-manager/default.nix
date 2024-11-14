@@ -81,8 +81,6 @@
     custom = {
       fonts.packages = with pkgs; [
         noto-fonts-emoji
-        nerdfonts
-        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
 
     };

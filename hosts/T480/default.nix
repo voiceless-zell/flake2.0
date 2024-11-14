@@ -13,14 +13,13 @@
   boot.kernelModules = [ "kvm-intel" ];
   networking = {
     hostName = "T480";
+
+    networkmanager.enable = true;
   };
   services.xserver = {
     enable = true;
     xkb.layout = "us";
     videoDrivers = [ "nvidia" ];
-    desktopManager.gnome = {
-      enable = true;
-    };
   };
   hardware = {
     nvidia.open = true;
