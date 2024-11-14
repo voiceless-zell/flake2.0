@@ -6,6 +6,10 @@
   ...
 }:
 {
+  imports = [
+    ../../nixos/virtualisation.nix
+    ../../nixos/steam.nix
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   networking = {
     hostName = "T480";

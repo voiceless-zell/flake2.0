@@ -25,7 +25,7 @@ let
         inherit host user;
         isWSL = host == "WSL";
         isNixOS = false;
-        isLaptop = host == "G14" || host == "P16" || host == "T480";
+        isLaptop = host == "G14" || host == "P16" || host == "T480" || host == "P72";
         isVm = host == "vm" || host == "vm-hyprland";
       };
 
@@ -37,6 +37,7 @@ let
     };
 in
 {
+  P72 = mkHomeConfiguration "P72" {};
   T480 = mkHomeConfiguration "T480" { };
   G14 = mkHomeConfiguration "G14" { };
   P16 = mkHomeConfiguration "P16" { };

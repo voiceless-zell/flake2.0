@@ -28,7 +28,7 @@ let
           ;
         isNixOS = true;
         isWSL = host == "WSL";
-        isLaptop = host == "P16" || host == "G14" || host == "T480";
+        isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
         isVm = host == "vm" || host == "vm-hyprland";
       };
 
@@ -54,7 +54,7 @@ let
                 inherit host user;
                 isWSL = host == "WSL";
                 isNixOS = true;
-                isLaptop = host == "P16" || host == "G14";
+                isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
                 isVm = host == "vm" || host == "vm-hyprland";
               };
 
@@ -77,6 +77,7 @@ let
     };
 in
 {
+  P72 = mkNixosConfiguration "P72" { };
   T480 = mkNixosConfiguration "T480" { };
   WSL = mkNixosConfiguration "WSL" { };
   G14 = mkNixosConfiguration "G14" { };

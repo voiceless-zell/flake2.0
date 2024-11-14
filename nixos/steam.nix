@@ -6,16 +6,16 @@
 }:
 {
   programs.steam = {
-    enable = isNIXOS && !isWSL;
-    remotePlay.openFirewall = isNIXOS && !isWSL;
+    enable = true;
+    remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = false;
   };
-  programs.gamemode.enable = isNIXOS && !isWSL;
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-runtime"
-    ];
+  programs.gamemode.enable = true;
+  # nixpkgs.config.allowUnfreePredicate =
+  #  pkg:
+  #  builtins.elem (lib.getName pkg) [
+  #    "steam"
+  #    "steam-original"
+  #    "steam-runtime"
+  #  ];
 }

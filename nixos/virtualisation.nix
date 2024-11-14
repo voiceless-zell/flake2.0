@@ -17,14 +17,14 @@
   ];
   virtualisation = {
     libvirtd = {
-      enable = isNIXOS && !isWSL;
+      enable = true;
       qemu = {
-        swtpm.enable = isNIXOS && !isWSL;
-        ovmf.enable = isNIXOS && !isWSL;
+        swtpm.enable = true;
+        ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
-    spiceUSBRedirection.enable = isNIXOS && !isWSL;
+    spiceUSBRedirection.enable = true;
   };
-  services.spice-vdagentd.enable = isNIXOS && !isWSL;
+  services.spice-vdagentd.enable = true;
 }
