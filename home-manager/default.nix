@@ -18,7 +18,7 @@
     fonts = {
       regular = mkOption {
         type = types.str;
-        default = "Geist Regular";
+        default = "JetBrainsMono Nerd Font";
         description = "The font to use for regular text";
       };
       monospace = mkOption {
@@ -80,9 +80,8 @@
 
     custom = {
       fonts.packages = with pkgs; [
-        noto-fonts
-        noto-fonts-cjk-sans
         noto-fonts-emoji
+        nerdfonts
         (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
 
