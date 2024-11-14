@@ -1,18 +1,26 @@
 {
   pkgs,
+  host,
+  lib,
   isNixOS,
+  config,
   ...
 }:
 {
-  imports = [
-    ./boot.nix
-    ./program.nix
-    ./security.nix
-    ./services.nix
-    ./users.nix
-    ./wayland.nix
-    #./steam.nix
-  ];
+  imports =
+    [
+      ./program.nix
+    ]
+    ++ lib.optionals (host != "WSL") [
+      ./boot.nix
+    ]
+    ++ [
+      ./security.nix
+      ./services.nix
+      ./users.nix
+      ./wayland.nix
+      # ./steam.nix
+    ];
   nix = {
     settings = {
       auto-optimise-store = true;
