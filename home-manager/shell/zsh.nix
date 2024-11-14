@@ -22,7 +22,7 @@
       ls = "eza --icons --long";
       startbg = " nohup ~/flake2/backgrounds/swww_randomize.sh ~/flake2/backgrounds > output.log 2>&1 &";
       # nixos
-      fl = "cd ~/flake2/ && v";
+      fl = "cd ~/flake2.0/ && v";
       notes = "cd ~/notes/ && v";
       music = "ncspot";
       vm = "sudo virsh net-start default";

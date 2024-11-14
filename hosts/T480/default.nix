@@ -6,8 +6,6 @@
   ...
 }:
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "kvm-intel" ];
   networking = {
     hostName = "T480";
@@ -18,12 +16,6 @@
     videoDrivers = [ "nvidia" ];
     desktopManager.gnome = {
       enable = true;
-    };
-    libinput = {
-      enable = true;
-      mouse = {
-        accelProfile = "flat";
-      };
     };
   };
   hardware = {
