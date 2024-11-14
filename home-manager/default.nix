@@ -4,6 +4,7 @@
   lib,
   pkgs,
   user,
+  inputs,
   ...
 }:
 {
@@ -12,6 +13,7 @@
     ./gui
     # ./impermanence.nix # only contains options
     ./shell
+
   ];
 
   options.custom = with lib; {
