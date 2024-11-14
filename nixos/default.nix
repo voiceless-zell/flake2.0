@@ -19,7 +19,10 @@
       ./services.nix
       ./users.nix
       ./wayland.nix
-      # ./steam.nix
+    ]
+    ++ lib.optionals (host == "P16") [
+      ./steam.nix
+
     ];
   nix = {
     settings = {
