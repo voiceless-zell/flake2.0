@@ -4,18 +4,32 @@
   ...
 }:
 {
-  programs.lazygit.enable = true;
-  programs.lazyvim = {
-    extras = {
-      lang = {
-        nix.enable = true;
+  programs = {
+    lazyvim = {
+      enable = true;
+      extras = {
+        coding = {
+          mini-surround.enable = true;
+
+          yanky.enable = true;
+        };
+        lang = {
+          nix.enable = true;
+        };
+        test = {
+          core.enable = true;
+        };
       };
     };
+    lazygit.enable = true;
+    ripgrep.enable = true;
+
   };
+
   programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    withRuby = true;
+    #  enable = false;
+    # defaultEditor = false;
+    # withRuby = false;
     extraPackages = with pkgs; [
       lua-language-server
       python3
