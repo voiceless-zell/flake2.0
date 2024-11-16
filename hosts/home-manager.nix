@@ -37,6 +37,7 @@ let
     };
 in
 {
+  Galifrey = mkHomeConfiguration "Galifrey" { };
   P72 = mkHomeConfiguration "P72" { };
   T480 = mkHomeConfiguration "T480" { };
   G14 = mkHomeConfiguration "G14" { };

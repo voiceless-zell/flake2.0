@@ -77,6 +77,7 @@ let
     };
 in
 {
+  Galifrey = mkNixosConfiguration "Galifrey" { };
   P72 = mkNixosConfiguration "P72" { };
   T480 = mkNixosConfiguration "T480" { };
   WSL = mkNixosConfiguration "WSL" { };

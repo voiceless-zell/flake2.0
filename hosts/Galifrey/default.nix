@@ -3,7 +3,7 @@
 }:
 {
   networking = {
-    hostName = "mserver";
+    hostName = "Galifrey";
     networkmanager.enable = true;
     firewall.enable = false;
   };
