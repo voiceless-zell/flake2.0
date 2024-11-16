@@ -2,8 +2,6 @@
   pkgs,
   host,
   lib,
-  isNixOS,
-  config,
   ...
 }:
 {

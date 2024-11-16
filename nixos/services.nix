@@ -1,4 +1,4 @@
-{ isNIXOS, isWSL, ... }:
+{ ... }:
 {
   services = {
     gvfs.enable = true;
@@ -16,7 +16,7 @@
       mouse.accelProfile = "flat";
     };
 
-  hardware.bolt.enable = true;
+    hardware.bolt.enable = true;
     #   ollama = {
     #  enable = isNIXOS;
     #  acceleration = "cuda";#find why over ride package
