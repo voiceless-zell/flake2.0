@@ -1,9 +1,13 @@
 {
+  config,
+  lib,
   user,
   ...
 }:
 {
-  home = {
-    stateVersion = "23.05";
+  config = {
+    wayland.windowManager.hyprland.settings.monitor = [
+      "eDP-1,2560x1600,0x0,1"
+    ];
   };
 }
