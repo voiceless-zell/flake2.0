@@ -7,6 +7,8 @@
     ./wofi
     ./waybar
     ./mako.nix
+    ./qute.nix
+    ./wlogout
   ];
   home.packages = with pkgs; [
     # others

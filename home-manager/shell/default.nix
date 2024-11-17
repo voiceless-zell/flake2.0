@@ -58,6 +58,7 @@
   config = {
     home.packages = with pkgs; [
       ets # add timestamp to beginning of each line
+      python3
       fd # better find
       htop
     ];
