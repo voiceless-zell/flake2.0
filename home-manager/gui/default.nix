@@ -13,7 +13,6 @@
   home.packages = with pkgs; [
     # others
     bitwarden
-    discord
     p7zip
     neofetch
     openssl
