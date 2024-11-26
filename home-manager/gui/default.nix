@@ -1,4 +1,4 @@
-{ pkgs, isNixOS, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./firefox.nix
@@ -12,6 +12,7 @@
   ];
   home.packages = with pkgs; [
     # others
+    cmatrix
     bitwarden
     p7zip
     neofetch
