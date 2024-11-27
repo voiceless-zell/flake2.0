@@ -18,7 +18,7 @@
     };
     tailscale = {
       enable = true;
-      useRoutingFeatures = "server";
+      useRoutingFeatures = "both";
     };
     xserver = {
       enable = true;

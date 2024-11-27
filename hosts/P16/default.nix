@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    ./tailscale.nix
+  ];
+
   boot.kernel.sysctl = {
     "vm.max_map_count" = 16777216;
     "fs.file-max" = 524288;
@@ -13,13 +17,16 @@
     networkmanager.enable = true;
     firewall.enable = false;
   };
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-    videoDrivers = [
-      "nvidia"
-      "intel"
-    ];
+  services = {
+    tailscale.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
+      videoDrivers = [
+        "nvidia"
+        "intel"
+      ];
+    };
   };
   hardware.nvidia = {
     modesetting.enable = false;
