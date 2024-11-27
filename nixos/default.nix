@@ -47,6 +47,7 @@
     nix-output-monitor
     nvd
     nerdfonts
+    cifs-utils
   ];
 
   time.timeZone = "America/New_York";
