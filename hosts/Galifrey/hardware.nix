@@ -42,11 +42,6 @@
     ];
   };
 
-  fileSystems."/mnt/raid" = {
-    device = "/dev/md0";
-    fsType = "ext4";
-  };
-
   swapDevices = [
     { device = "/dev/disk/by-uuid/d829821f-23f4-4ead-acd4-7a04ac74be7d"; }
   ];
