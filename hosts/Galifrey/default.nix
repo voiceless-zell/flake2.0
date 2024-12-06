@@ -25,6 +25,14 @@
       xkb.layout = "us";
       videoDrivers = [ "intel" ];
     };
+    mdadm = {
+      enable = true;
+      devices = [
+        "/dev/sda"
+        "/dev/sdb"
+      ];
+      level = "0";
+    };
     samba = {
       enable = true;
       settings = {
