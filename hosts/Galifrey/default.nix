@@ -25,6 +25,16 @@
       xkb.layout = "us";
       videoDrivers = [ "intel" ];
     };
+    samba = {
+      enable = true;
+      settings = {
+        public = {
+          browsable = "yes";
+          "guest ok" = "yes";
+          path = "/mnt/raid/";
+        };
+      };
+    };
   };
   hardware.opengl = {
     enable = true;
@@ -32,5 +42,4 @@
       [
       ];
   };
-
 }

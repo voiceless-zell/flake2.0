@@ -8,6 +8,7 @@
     packages = with pkgs; [
       tailscale
       cifs-utils
+      mdadm
     ];
   };
 }
