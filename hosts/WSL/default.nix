@@ -24,4 +24,8 @@
     startMenuLaunchers = true;
   };
   nixpkgs.hostPlatform = "x86_64-linux";
+  environment.systemPackages = with pkgs; [
+    obsidian
+  ];
+
 }
