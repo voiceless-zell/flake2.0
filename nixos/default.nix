@@ -46,7 +46,7 @@
     nh
     nix-output-monitor
     nvd
-    nerdfonts
+    # nerdfonts
     cifs-utils
   ];
 
