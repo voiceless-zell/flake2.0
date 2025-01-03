@@ -38,6 +38,6 @@
     moreutils
     libcxxStdenv
     alejandra
-    nerdfonts
+    # nerdfonts
   ];
 }
