@@ -9,7 +9,7 @@
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
     };
     LazyVim = {
       url = "github:matadaniel/LazyVim-module";

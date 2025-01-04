@@ -2,16 +2,22 @@
   pkgs,
   isNIXOS,
   isWSL,
+  inputs,
 
   ...
 }:
 {
-  programs.hyprland.enable = true;
-  xdg.portal = {
+  programs.hyprland = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
+  # xdg.portal = {
+  #  enable = true;
+  #  wlr.enable = true;
+  #  extraPortals = [
+  #    pkgs.xdg-desktop-portal-hyprland
+  #  ];
+  #};
 }

@@ -78,6 +78,9 @@
           animation = fade, 1, 8, default
           animation = workspaces, 1, 6, overshot, slidevert
       }
+      debug {
+        disable_logs = false
+        }
 
 
       # ----------------------------------------------------------------
@@ -189,8 +192,6 @@
       
       # autostart
       exec-once = systemctl --user import-environment &
-      exec-once = hash dbus-update-activation-environment 2>/dev/null &
-      exec-once = dbus-update-activation-environment --systemd &
       exec-once = hyprctl setcursors home.pointerCursor.name toString home.pointerCursor.size
       exec-once = notify-send 'Hey $USER, Welcome back' && load-env 
       exec-once = wl-paste --type text --watch cliphist store && wl-paste --type image --watch cliphist store && mako &
