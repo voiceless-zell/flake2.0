@@ -11,6 +11,7 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+    nvf.url = "github:notashelf/nvf";
     LazyVim = {
       url = "github:matadaniel/LazyVim-module";
       inputs.nixpkgs.follows = "nixpkgs";

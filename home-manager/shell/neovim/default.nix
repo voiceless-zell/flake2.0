@@ -4,7 +4,7 @@
 {
   programs = {
     lazyvim = {
-      enable = true;
+      enable = false;
       extras = {
         coding = {
           mini-surround.enable = true;

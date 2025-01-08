@@ -61,6 +61,7 @@ let
               users.${user} = {
                 imports = [
                   inputs.LazyVim.homeManagerModules.default
+                  inputs.nvf.homeManagerModules.default
                   ./${host}/home.nix # host specific home-manager configuration
                   ../home-manager
                 ];
@@ -68,11 +69,14 @@ let
             };
           }
           # alias for home-manager
-          (lib.mkAliasOptionModule [ "hm" ] [
-            "home-manager"
-            "users"
-            user
-          ])
+          (lib.mkAliasOptionModule
+            [ "hm" ]
+            [
+              "home-manager"
+              "users"
+              user
+            ]
+          )
         ];
     };
 in

@@ -12,6 +12,7 @@
     ./tmux.nix
     ./neovim
     ./zsh.nix
+    ./nvf
   ];
 
   options.custom = with lib; {
@@ -60,6 +61,8 @@
       ets # add timestamp to beginning of each line
       python3
       fd # better find
+      nerd-fonts.jetbrains-mono
+
       htop
     ];
   };
