@@ -12,6 +12,10 @@
       url = "github:hyprwm/Hyprland";
     };
     nvf.url = "github:notashelf/nvf";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     LazyVim = {
       url = "github:matadaniel/LazyVim-module";
       inputs.nixpkgs.follows = "nixpkgs";

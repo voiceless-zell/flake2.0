@@ -12,7 +12,8 @@
     ./tmux.nix
     ./neovim
     ./zsh.nix
-    ./nvf
+   # ./nvf
+   ./nixvim
   ];
 
   options.custom = with lib; {
