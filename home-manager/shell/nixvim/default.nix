@@ -1,84 +1,56 @@
-{ inputs, pkgs, ...}:
-{
-  programs.nixvim = {
-    enable = true;
+_: {
+  imports = [
+    # General Configuration
+    ./settings.nix
+    ./keymaps.nix
+    ./auto_cmds.nix
+    ./file_types.nix
 
-    globals.mapleader = " ";
+    # Themes
+    ./plugins/themes
 
-    plugins = {
-      lsp-format = {
-        enable = true;
-        lspServersToEnable = [
-          "all"
-        ];
-      };
-      lsp = {
-        enable = true;
-      };
-      treesitter = { 
-        enable = true;
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-          bash
-          markdown
-          nix
-          toml
-          vim
-          vimdoc
-          xml
-          yaml
-        ];
-      };
-      web-devicons.enable = true;
-      toggleterm = {
-    enable = true;
-    settings = {
-      size = 20;
-    };
-  };
-        cmp = {
-            enable = true;
-            autoEnableSources = true;
-            autoLoad = true;
-        };
-        dashboard = {
-            enable = true;
-            autoLoad = true;
-        };
-        lazygit = {
-  enable = true;
-  settings.floating_window_border_chars = [
-    "╭"
-    "─"
-    "╮"
-    "│"
-    "╯"
-    "─"
-    "╰"
-    "│"
+    # Completion
+    ./plugins/cmp/cmp.nix
+    ./plugins/cmp/cmp-copilot.nix
+    ./plugins/cmp/lspkind.nix
+    ./plugins/cmp/autopairs.nix
+    ./plugins/cmp/schemastore.nix
+
+    # Snippets
+    ./plugins/snippets/luasnip.nix
+
+    # Editor plugins and configurations
+    ./plugins/editor/neo-tree.nix
+    ./plugins/editor/treesitter.nix
+    ./plugins/editor/undotree.nix
+    ./plugins/editor/illuminate.nix
+    ./plugins/editor/indent-blankline.nix
+    ./plugins/editor/todo-comments.nix
+    ./plugins/editor/copilot-chat.nix
+    ./plugins/editor/navic.nix
+
+    # UI plugins
+    ./plugins/ui/bufferline.nix
+    ./plugins/ui/lualine.nix
+    ./plugins/ui/startup.nix
+
+    # LSP and formatting
+    ./plugins/lsp/lsp.nix
+    ./plugins/lsp/conform.nix
+    ./plugins/lsp/fidget.nix
+
+    # Git
+    ./plugins/git/lazygit.nix
+    ./plugins/git/gitsigns.nix
+
+    # Utils
+    ./plugins/utils/telescope.nix
+    ./plugins/utils/whichkey.nix
+    ./plugins/utils/extra_plugins.nix
+    ./plugins/utils/mini.nix
+    ./plugins/utils/markdown-preview.nix
+    ./plugins/utils/obsidian.nix
+    ./plugins/utils/toggleterm.nix
+    ./plugins/utils/web-devicons.nix
   ];
-};
-markdown-preview.enable = true;
-mini = {
-  enable = true;
-  autoLoad = true;
-};
-neo-tree = {
-    enable = true;
-};
-nix.enable = true;
-telescope = {
-    enable = true;
-};
-which-key = {
-    enable = true;
-    autoLoad = true;
-};
-    };
-    colorschemes.tokyonight.enable = true;
-    # keymaps = [
-   # 
- #  ];
-
-    
-  };
 }
