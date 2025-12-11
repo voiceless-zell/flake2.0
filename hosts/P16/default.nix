@@ -2,10 +2,9 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
-    ./tailscale.nix
+    #    ./tailscale.nix
   ];
 
   boot.kernel.sysctl = {
