@@ -5,37 +5,35 @@
   specialArgs,
   user ? "zell",
   ...
-}:
-let
+}: let
   # provide an optional { pkgs } 2nd argument to override the pkgs
-  mkNixosConfiguration =
-    host:
-    {
-      pkgs ? (
-        import inputs.nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      ),
-    }:
+  mkNixosConfiguration = host: {
+    pkgs ? (
+      import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      }
+    ),
+  }:
     lib.nixosSystem {
       inherit pkgs;
 
-      specialArgs = specialArgs // {
-        inherit
-          host
-          user
-          ;
-        isNixOS = true;
-        isWSL = host == "WSL";
-        isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
-        isVm = host == "vm" || host == "vm-hyprland";
-      };
+      specialArgs =
+        specialArgs
+        // {
+          inherit
+            host
+            user
+            ;
+          isNixOS = true;
+          isWSL = host == "WSL";
+          isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
+          isVm = host == "vm" || host == "vm-hyprland";
+        };
 
       modules =
         [
           ./${host} # host specific configuration
-
         ]
         # Conditionally add the hardware module if host is not "WSL"
         ++ lib.optionals (host != "WSL") [
@@ -45,18 +43,21 @@ let
           ../nixos
           ../overlays
           inputs.home-manager.nixosModules.home-manager
+          inputs.nixai.nixosModules.default
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
 
-              extraSpecialArgs = specialArgs // {
-                inherit host user;
-                isWSL = host == "WSL";
-                isNixOS = true;
-                isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
-                isVm = host == "vm" || host == "vm-hyprland";
-              };
+              extraSpecialArgs =
+                specialArgs
+                // {
+                  inherit host user;
+                  isWSL = host == "WSL";
+                  isNixOS = true;
+                  isLaptop = host == "P16" || host == "G14" || host == "T480" || host == "P72";
+                  isVm = host == "vm" || host == "vm-hyprland";
+                };
 
               users.${user} = {
                 imports = [
@@ -70,8 +71,9 @@ let
             };
           }
           # alias for home-manager
-          (lib.mkAliasOptionModule
-            [ "hm" ]
+          (
+            lib.mkAliasOptionModule
+            ["hm"]
             [
               "home-manager"
               "users"
@@ -80,14 +82,13 @@ let
           )
         ];
     };
-in
-{
-  Galifrey = mkNixosConfiguration "Galifrey" { };
-  P72 = mkNixosConfiguration "P72" { };
-  T480 = mkNixosConfiguration "T480" { };
-  WSL = mkNixosConfiguration "WSL" { };
-  G14 = mkNixosConfiguration "G14" { };
-  P16 = mkNixosConfiguration "P16" { };
+in {
+  Galifrey = mkNixosConfiguration "Galifrey" {};
+  P72 = mkNixosConfiguration "P72" {};
+  T480 = mkNixosConfiguration "T480" {};
+  WSL = mkNixosConfiguration "WSL" {};
+  G14 = mkNixosConfiguration "G14" {};
+  P16 = mkNixosConfiguration "P16" {};
   #  vm = mkNixosConfiguration "vm" { };
   #vm-hyprland = mkNixosConfiguration "vm-hyprland" { };
 }

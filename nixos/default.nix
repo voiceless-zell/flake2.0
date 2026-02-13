@@ -1,10 +1,10 @@
 {
   pkgs,
   host,
+  inputs,
   lib,
   ...
-}:
-{
+}: {
   imports =
     [
       ./program.nix
@@ -20,7 +20,6 @@
     ]
     ++ lib.optionals (host == "P16") [
       ./steam.nix
-
     ];
   nix = {
     settings = {
@@ -49,6 +48,7 @@
     nvd
     # nerdfonts
     cifs-utils
+    inputs.nixai.packages.${pkgs.system}.default
   ];
 
   time.timeZone = "America/New_York";
